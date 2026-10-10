@@ -6,7 +6,7 @@
 <title>Dub Transmuter — Virtual Sound System</title>
 <link rel="manifest" href="manifest.webmanifest">
 <meta name="theme-color" content="#151815">
-<meta name="description" content="Dub Transmuter: preamp dub de 4 bandas con eco de cinta, sirena, pads y más. Funciona sin conexión.">
+<meta name="description" content="Dub Transmuter: preamp dub de 4 bandas con eco de cinta, sirena, pads y más. Funciona sin conexión. / 4-band dub preamp with tape echo, siren and pads. Works offline.">
 <link rel="icon" type="image/png" href="icon-192.png">
 <link rel="apple-touch-icon" href="icon-192.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -317,6 +317,16 @@ body.booting .ring { animation: ringboot 1.4s; } @keyframes ringboot { 0% { opac
 .credit { text-align: center; font-size: 11px; line-height: 1.8; color: #aeb7a2; margin: 0 0 34px; padding: 0 16px; }
 .credit strong { color: var(--amber); }
 .credit a { color: var(--ring, var(--amber)); word-break: break-all; }
+.hbtns { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; justify-content: flex-end; }
+header > div:first-child { min-width: 0; }
+@media (max-width: 700px) {
+    header { flex-direction: column; align-items: flex-start; gap: 14px; }
+    .hbtns { justify-content: flex-start; width: 100%; }
+    .hbtns .btn, .hbtns .select { padding: 8px 9px; font-size: 10px; min-height: 0; }
+    .lion { width: 84px; height: 46px; }
+    .brand { font-size: clamp(17px, 5.6vw, 26px) !important; letter-spacing: 2px !important; }
+    .eyebrow { letter-spacing: 1.5px !important; font-size: 9px; }
+}
 a.btn { color: inherit; text-decoration: none; }
 .pads { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
 .pad { padding: 16px 2px; font-size: 9px; min-height: 52px; }
@@ -350,7 +360,7 @@ a.btn { color: inherit; text-decoration: none; }
             <div class="brand">DUB TRANSMUTER<span> – </span>VIRTUAL SOUND SYSTEM</div>
             <div class="eyebrow">DIGITAL DUB PREAMP PRO · LOCAL AUDIO LAB</div></div></div>
         </div>
-        <div style="display:flex;gap:10px;align-items:center"><button class="btn power" id="power">⏻ POWER</button><button class="btn" id="helpBtn">? ATAJOS</button><button class="btn" id="installBtn">⬇ INSTALAR</button><button class="btn" id="perfBtn">⛶ PERFORMANCE</button><select id="theme" class="select" aria-label="Tema"><option value="light">CLARO</option><option value="dark">OSCURO</option><option value="rasta">RASTA</option><option value="vintage">VINTAGE</option><option value="neon">NEÓN</option><option value="studio">ESTUDIO</option></select><input type="color" id="accent" value="#e8bd61" title="Color de acento (doble clic: restablecer)" aria-label="Color de acento"><div class="status"><i class="led"></i><span id="engineStatus">MOTOR DE AUDIO EN ESPERA</span></div></div>
+        <div class="hbtns"><select id="lang" class="select" aria-label="Idioma / Language"><option value="es">ES</option><option value="en">EN</option></select><button class="btn power" id="power">⏻ POWER</button><button class="btn" id="helpBtn">? ATAJOS</button><button class="btn" id="installBtn">⬇ INSTALAR</button><button class="btn" id="perfBtn">⛶ PERFORMANCE</button><select id="theme" class="select" aria-label="Tema"><option value="light">CLARO</option><option value="dark">OSCURO</option><option value="rasta">RASTA</option><option value="vintage">VINTAGE</option><option value="neon">NEÓN</option><option value="studio">ESTUDIO</option></select><input type="color" id="accent" value="#e8bd61" title="Color de acento (doble clic: restablecer)" aria-label="Color de acento"><div class="status"><i class="led"></i><span id="engineStatus">MOTOR DE AUDIO EN ESPERA</span></div></div>
     </header>
 
     <!-- RACK 1: TAPE DECK -->
@@ -1340,7 +1350,7 @@ $('preset').onchange = e => {
     if (p) defs.forEach(d => setValue(d, p[d[0]] ?? d[4]));
 };
 $('savePreset').onclick = () => {
-    const n = prompt('Nombre del preset:'); if (!n) return;
+    const n = prompt(tr('Nombre del preset:')); if (!n) return;
     userPresets[n] = Object.fromEntries(defs.map(d => [d[0], values[d[0]]]));
     try { localStorage.setItem('oxido_presets', JSON.stringify(userPresets)); } catch (e) { report(Error('No se pudo guardar de forma permanente (almacenamiento bloqueado).')); }
     refreshPresets('u:' + n);
@@ -1906,6 +1916,85 @@ function draw() {
 
 draw();
 window.addEventListener('beforeunload', () => { urls.forEach(u => URL.revokeObjectURL(u)); });
+
+// ===== Idioma / Language (ES · EN) =====
+const PAIRS = [
+['MOTOR DE AUDIO EN ESPERA','AUDIO ENGINE STANDBY'],['MOTOR DE AUDIO ACTIVO','AUDIO ENGINE ACTIVE'],['MOTOR DE AUDIO EN PAUSA','AUDIO ENGINE PAUSED'],['? ATAJOS','? SHORTCUTS'],['⬇ INSTALAR','⬇ INSTALL'],['CLARO','LIGHT'],['OSCURO','DARK'],['NEÓN','NEON'],['ESTUDIO','STUDIO'],
+['TU SELECCIÓN. TU SONIDO.','YOUR SELECTION. YOUR SOUND.'],['ARCHIVOS LOCALES / SIN SUBIDAS','LOCAL FILES / NO UPLOADS'],['El sistema espera tu música.','The system is waiting for your music.'],['Carga un archivo y enciende la sesión.','Load a file and start the session.'],
+['+ Añade tus discos','+ Add your records'],['Arrastra archivos de audio aquí','Drag audio files here'],['EXPLORAR ARCHIVOS','BROWSE FILES'],['Empieza con el volumen bajo, especialmente con auriculares.','Start with the volume low, especially with headphones.'],
+['USAR BPM','USE BPM'],['RESTABLECER','RESET'],['GANANCIA · SATURACIÓN · MIC','GAIN · SATURATION · MIC'],['MIC PASA POR EL ISOLATOR Y FX','MIC GOES THROUGH THE ISOLATOR AND FX'],['USA AUDÍFONOS (ACOPLE)','USE HEADPHONES (FEEDBACK)'],
+['RET ECO','RET ECHO'],['NIVELES DE RETORNO MAESTRO','MASTER RETURN LEVELS'],['TIEMPO · RETROALIMENTACIÓN','TIME · FEEDBACK'],['TAMAÑO · AMORTIGUACIÓN','SIZE · DAMPING'],['1/8 PUNT.','1/8 DOT.'],['TIEMPO · FEEDBACK · WOW · TAPE · MIX','TIME · FEEDBACK · WOW · TAPE · MIX'],['→ AMBOS','→ BOTH'],
+['GUARDAR','SAVE'],['CARGAR','LOAD'],['GUARDAR SESIÓN','SAVE SESSION'],['CARGAR SESIÓN','LOAD SESSION'],['BORRAR MIDI','CLEAR MIDI'],['TAPE · VOZ · PADS · DROP','TAPE · VOICE · PADS · DROP'],['TAPE / VELOCIDAD','TAPE / SPEED'],
+['O = stop · P = pull up · LOCK: velocidad sin cambiar tono','O = stop · P = pull up · LOCK: speed without changing pitch'],['VOZ / ENTRADAS','VOICE / INPUTS'],['VOZ LIMPIA','CLEAN VOICE'],['TELÉFONO','TELEPHONE'],['MIC: DEFECTO','MIC: DEFAULT'],['LINE: DEFECTO','LINE: DEFAULT'],['SALIDA: DEFECTO','OUTPUT: DEFAULT'],
+['CLIC = tocar / cargar · CLIC DERECHO = cambiar sample · Z X C V B N , .','CLICK = play / load · RIGHT CLICK = change sample · Z X C V B N , .'],
+['06 / FILTROS & EQ MASTER','06 / FILTERS & MASTER EQ'],['BASS FILTER · SWEEP · RETORNOS HP/LP · EQ 10 BANDAS','BASS FILTER · SWEEP · RETURN HP/LP · 10-BAND EQ'],['FILTROS DE RETORNO (HP / LP)','RETURN FILTERS (HP / LP)'],
+['DELAY · ECO · REVERB · OSCURECE O ADELGAZA LAS REPETICIONES','DELAY · ECHO · REVERB · DARKEN OR THIN OUT THE REPEATS'],['CUT / BOOST · FRECUENCIA AJUSTABLE','CUT / BOOST · ADJUSTABLE FREQUENCY'],['EQ GRÁFICO 10 BANDAS','10-BAND GRAPHIC EQ'],
+['Isolator Paralelo & Envíos de Eco Individuales.','Parallel Isolator & Individual Echo Sends.'],['Arrastra las perillas hacia arriba/abajo · Doble clic para reset','Drag the knobs up/down · Double-click to reset'],['Palanca hacia abajo = ON, Arriba = MUTE · Audio local','Lever down = ON, up = MUTE · Local audio'],
+['Teclas: 1-4 kills · E throw · S sirena · T tap · M mic · D drop · P pull up · O tape stop · Z-X-C-V-B-N-,-. pads · Espacio play · MIDI: CC20+ perillas, notas 36-42','Keys: 1-4 kills · E throw · S siren · T tap · M mic · D drop · P pull up · O tape stop · Z-X-C-V-B-N-,-. pads · Space play · MIDI: CC20+ knobs, notes 36-42'],
+['Creado por','Created by'],['para la humanidad.','for humanity.'],['Link para donar al héroe anónimo que construyó esta app:','Link to donate to the anonymous hero who built this app:'],
+['SALIR ✕','EXIT ✕'],['SIRENA','SIREN'],
+['Color de acento (doble clic: restablecer)','Accent color (double-click: reset)'],['Color de acento','Accent color'],['Pista anterior','Previous track'],['Pista siguiente','Next track'],['Repetir pista','Repeat track'],['Forma de onda de la pista','Track waveform'],['Posición de reproducción','Playback position'],['Elegir pista','Choose track'],
+['Visualizador del espectro de audio','Audio spectrum visualizer'],['Si está en SÍ, el kill también corta los envíos a FX','If YES, kill also cuts the FX sends'],['Señal · rojo = límite de saturación','Signal · red = saturation limit'],['Banda activa','Band active'],['Subdivisión','Subdivision'],
+['Mantener pulsado para activar la sirena','Hold to trigger the siren'],['Forma de onda de sirena','Siren waveform'],['Forma del LFO','LFO shape'],['Efecto de voz','Voice effect'],['Micrófono','Microphone'],['Entrada de línea','Line input'],['Curva del EQ','EQ curve'],
+['Atajos de teclado','Keyboard shortcuts'],['Tres bafles sub scoop','Three sub scoop speaker cabinets'],['Tema','Theme'],['Subir panel','Move panel up'],['Bajar panel','Move panel down'],['Plegar / desplegar','Collapse / expand'],['Detener','Stop'],['Sincronizar','Sync'],
+['Preset anterior','Previous preset'],['Preset siguiente','Next preset'],['Salida','Output'],['Modo performance','Performance mode'],
+['Sesión activa. Ajusta las perillas, botones y el eco.','Session active. Adjust the knobs, buttons and the echo.'],['Selecciona un archivo de audio compatible.','Select a compatible audio file.'],['Lista para usar sin conexión.','Ready to use offline.'],
+['Dub Transmuter instalada. Ya puedes abrirla sin conexión desde tu pantalla de inicio.','Dub Transmuter installed. You can now open it offline from your home screen.'],['El micrófono requiere abrir la página con https o localhost.','The microphone requires opening the page over https or localhost.'],
+['En iPhone/iPad (Safari): toca Compartir y luego «Añadir a pantalla de inicio».','On iPhone/iPad (Safari): tap Share, then «Add to Home Screen».'],['Ese archivo no es un preset válido.','That file is not a valid preset.'],['Ese archivo no es una sesión válida de Dub Transmuter.','That file is not a valid Dub Transmuter session.'],
+['Este navegador no admite Web Audio.','This browser does not support Web Audio.'],['Este navegador no admite Web MIDI (prueba Chrome o Edge).','This browser does not support Web MIDI (try Chrome or Edge).'],['Este navegador no admite grabación.','This browser does not support recording.'],
+['MIDI LEARN activo: toca una perilla o botón de la pantalla.','MIDI LEARN active: touch a knob or button on the screen.'],['Asignaciones MIDI borradas.','MIDI assignments cleared.'],
+['Micrófono activo: pasa por el preamp, el isolator y los FX. Usa audífonos para evitar acoples.','Microphone active: it goes through the preamp, the isolator and the FX. Use headphones to avoid feedback.'],['No se encontró ningún micrófono.','No microphone was found.'],['No se pudo abrir la entrada de línea.','Could not open the line input.'],
+['No se pudo activar el micrófono.','Could not activate the microphone.'],['No se pudo cargar ese sample.','Could not load that sample.'],['No se pudo guardar de forma permanente (almacenamiento bloqueado).','Could not save permanently (storage blocked).'],['No se pudo iniciar el audio.','Could not start the audio.'],
+['Nombre del preset:','Preset name:'],['Para instalarla debe estar publicada en un hosting con https (o en localhost). Abierta como archivo local no se puede instalar.','To install it, it must be published on an https host (or localhost). It cannot be installed when opened as a local file.'],
+['Permiso de entrada denegado.','Input permission denied.'],['Permiso de micrófono denegado.','Microphone permission denied.'],['Tu navegador no permite elegir la salida (usa Chrome o Edge).','Your browser does not allow choosing the output (use Chrome or Edge).'],
+['Usa el menú del navegador (⋮ o el icono de instalar en la barra de direcciones) y elige «Instalar app».','Use the browser menu (⋮ or the install icon in the address bar) and choose «Install app».']];
+const ES_EN = new Map(PAIRS), EN_ES = new Map(PAIRS.map(([a, b]) => [b, a]));
+const DYN = [
+[/^(\d+) archivo\(s\) añadido\(s\)\. Pulsa PLAY para reproducir\.$/, '$1 file(s) added. Press PLAY to start.', /^(\d+) file\(s\) added\. Press PLAY to start\.$/, '$1 archivo(s) añadido(s). Pulsa PLAY para reproducir.'],
+[/^Sesión cargada: (.*)$/, 'Session loaded: $1', /^Session loaded: (.*)$/, 'Sesión cargada: $1'],
+[/^Sesión guardada \(([\d.]+) MB(, incluye los samples de los pads)?\)\.$/, (m, mb, x) => `Session saved (${mb} MB${x ? ', includes the pad samples' : ''}).`, /^Session saved \(([\d.]+) MB(, includes the pad samples)?\)\.$/, (m, mb, x) => `Sesión guardada (${mb} MB${x ? ', incluye los samples de los pads' : ''}).`],
+[/^Asignado (CC|nota) (\d+) → «(.*)»\.$/, (m, k, n, t) => `Assigned ${k === 'CC' ? 'CC' : 'note'} ${n} → «${t}».`, /^Assigned (CC|note) (\d+) → «(.*)»\.$/, (m, k, n, t) => `Asignado ${k === 'CC' ? 'CC' : 'nota'} ${n} → «${t}».`],
+[/^MIDI LEARN: mueve o pulsa un control físico para asignarlo a «(.*)»\.$/, 'MIDI LEARN: move or press a physical control to assign it to «$1».', /^MIDI LEARN: move or press a physical control to assign it to «(.*)»\.$/, 'MIDI LEARN: mueve o pulsa un control físico para asignarlo a «$1».'],
+[/^MIDI activo · (\d+) dispositivo\(s\)\.$/, 'MIDI active · $1 device(s).', /^MIDI active · (\d+) device\(s\)\.$/, 'MIDI activo · $1 dispositivo(s).'],
+[/^KILL CORTA FX: (NO|SÍ)$/, (m, v) => 'KILL CUTS FX: ' + (v === 'NO' ? 'NO' : 'YES'), /^KILL CUTS FX: (NO|YES)$/, (m, v) => 'KILL CORTA FX: ' + (v === 'NO' ? 'NO' : 'SÍ')],
+[/^(.) · VACÍO$/, '$1 · EMPTY', /^(.) · EMPTY$/, '$1 · VACÍO'], [/^(LOCAL SELECTION \/ .*) PISTAS?$/, '$1 TRACKS', /^(LOCAL SELECTION \/ .*) TRACKS$/, '$1 PISTAS'],
+[/^BPM AUTO: analizando…$/, 'BPM AUTO: analyzing…', /^BPM AUTO: analyzing…$/, 'BPM AUTO: analizando…'], [/^No se pudo cargar el sample del pad (\d+)\.$/, 'Could not load the sample for pad $1.', /^Could not load the sample for pad (\d+)\.$/, 'No se pudo cargar el sample del pad $1.']];
+let lang = 'es';
+function trText(str, to) {
+    const core = str.trim(); if (!core) return str;
+    const lead = str.slice(0, str.indexOf(core)), trail = str.slice(str.indexOf(core) + core.length), map = to === 'en' ? ES_EN : EN_ES;
+    if (map.has(core)) return lead + map.get(core) + trail;
+    for (const [a, b, c, d] of DYN) { const rx = to === 'en' ? a : c; if (rx.test(core)) return lead + core.replace(rx, to === 'en' ? b : d) + trail; }
+    return str;
+}
+const tr = s => trText(s, lang);
+function fixNode(n) { if (n.nodeType === 3) { if (n.parentElement && n.parentElement.closest('script,style')) return; const t = trText(n.textContent, lang); if (t !== n.textContent) n.textContent = t; }
+    else if (n.nodeType === 1) { const w = document.createTreeWalker(n, NodeFilter.SHOW_TEXT); let x; while ((x = w.nextNode())) fixNode(x); } }
+function fixAttrs(root) { root.querySelectorAll('[title],[aria-label]').forEach(e => ['title', 'aria-label'].forEach(a => { const v = e.getAttribute(a); if (v) { const t = trText(v, lang); if (t !== v) e.setAttribute(a, t); } })); }
+const HELP = {
+ es: { t: 'ATAJOS DE TECLADO', c: '(H o ? para cerrar · clic fuera)', s: [['TRANSPORTE', [['Espacio'], 'play/pausa · ', ['←', '→'], ' ±5 s (Shift ±15 s) · ', ['Inicio'], ' reiniciar · ', ['RePág', 'AvPág'], ' pista ant./sig. · ', ['O'], ' tape stop · ', ['P'], ' pull up · ', ['[', ']'], ' velocidad ∓5%']],
+  ['MEZCLA', [['1', '2', '3', '4'], ' kills · ', ['K'], ' kill corta FX · ', ['-', '='], ' master ∓5 · ', ['Esc'], ' pánico (apaga throw, drop y sirena, restablece kills)']],
+  ['EFECTOS', [['E'], ' echo throw · ', ['D'], ' drop · ', ['T'], ' tap tempo · ', ['9'], ' usar BPM auto · ', ['R'], ' grabar']], ['VOZ Y ENTRADAS', [['M'], ' micrófono · ', ['I'], ' entrada de línea']], ['SIRENA', [['S'], ' sirena · ', ['Q'], ' latch · ', ['A'], ' secuenciador']],
+  ['PADS Y PRESETS', [['Z', 'X', 'C', 'V', 'B', 'N', ',', '.'], ' pads · ', ['5'], ' Init · ', ['6'], ' Lee Perry · ', ['7'], ' King Tubby · ', ['8'], ' Steppers']], ['OTROS', [['Y'], ' siguiente tema · ', ['H'], ' o ', ['?'], ' esta ayuda']],
+  ['TÁCTIL', ['Varios dedos a la vez: mueve varias perillas, mantén sirena + throw, toca pads en acorde. Doble toque en una perilla = restablecer.']], ['MIDI LEARN', ['Pulsa MIDI LEARN, toca o mueve un control en pantalla (perilla o botón) y luego mueve o pulsa el control físico para asignarlo. BORRAR MIDI limpia las asignaciones.']]] },
+ en: { t: 'KEYBOARD SHORTCUTS', c: '(H or ? to close · click outside)', s: [['TRANSPORT', [['Space'], 'play/pause · ', ['←', '→'], ' ±5 s (Shift ±15 s) · ', ['Home'], ' restart · ', ['PgUp', 'PgDn'], ' prev/next track · ', ['O'], ' tape stop · ', ['P'], ' pull up · ', ['[', ']'], ' speed ∓5%']],
+  ['MIX', [['1', '2', '3', '4'], ' kills · ', ['K'], ' kill cuts FX · ', ['-', '='], ' master ∓5 · ', ['Esc'], ' panic (stops throw, drop and siren, resets kills)']],
+  ['EFFECTS', [['E'], ' echo throw · ', ['D'], ' drop · ', ['T'], ' tap tempo · ', ['9'], ' use auto BPM · ', ['R'], ' record']], ['VOICE & INPUTS', [['M'], ' microphone · ', ['I'], ' line input']], ['SIREN', [['S'], ' siren · ', ['Q'], ' latch · ', ['A'], ' sequencer']],
+  ['PADS & PRESETS', [['Z', 'X', 'C', 'V', 'B', 'N', ',', '.'], ' pads · ', ['5'], ' Init · ', ['6'], ' Lee Perry · ', ['7'], ' King Tubby · ', ['8'], ' Steppers']], ['OTHER', [['Y'], ' next theme · ', ['H'], ' or ', ['?'], ' this help']],
+  ['TOUCH', ['Several fingers at once: move several knobs, hold siren + throw, play pad chords. Double-tap a knob = reset.']], ['MIDI LEARN', ['Press MIDI LEARN, touch or move a control on screen (knob or button), then move or press the physical control to assign it. CLEAR MIDI removes the assignments.']]] } };
+function buildHelp() {
+    const H = HELP[lang], k = a => a.map(x => `<kbd>${x}</kbd>`).join('');
+    $('help').firstElementChild.innerHTML = `<strong>${H.t}</strong> <span class="hint">${H.c}</span>` + H.s.map(([h, parts]) => `<h3>${h}</h3>` + parts.map(p => Array.isArray(p) ? k(p) : p).join('')).join('');
+}
+function setLang(l) {
+    lang = l === 'en' ? 'en' : 'es'; document.documentElement.lang = lang; $('lang').value = lang;
+    try { localStorage.setItem('oxido_lang', lang); } catch (e) {}
+    buildHelp(); fixNode(document.body); fixAttrs(document.body);
+}
+new MutationObserver(ms => { if (lang !== 'en') return; for (const m of ms) { if (m.type === 'characterData') fixNode(m.target); else m.addedNodes.forEach(fixNode); } })
+    .observe(document.body, { subtree: true, childList: true, characterData: true });
+$('lang').onchange = e => setLang(e.target.value);
+{ let l = null; try { l = localStorage.getItem('oxido_lang'); } catch (e) {} setLang(l || ((navigator.language || 'es').toLowerCase().startsWith('es') ? 'es' : 'en')); }
 </script>
 </body>
 </html>
