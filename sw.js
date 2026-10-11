@@ -1,6 +1,6 @@
 // Dub Transmuter – service worker (uso sin conexión).
 // Al publicar una versión nueva de index.html, cambia el número de VERSION para que los usuarios la reciban.
-const VERSION = 'v2';
+const VERSION = 'v3';
 const CACHE = 'dub-transmuter-' + VERSION;
 const SHELL = ['./', './index.html', './manifest.webmanifest', './icon-192.png', './icon-512.png', './icon-maskable-512.png'];
 

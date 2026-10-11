@@ -229,18 +229,18 @@ header { display: flex; align-items: center; justify-content: space-between; mar
 button, select, input { touch-action: manipulation; }
 .knob, .siren-button, #throw, .pad, .kill-btn { touch-action: none; }
 .btn, .knob, .pad, .siren-button, .kill-btn { user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; }
-:is([data-theme="dark"],[data-theme="rasta"],[data-theme="vintage"],[data-theme="neon"],[data-theme="studio"]) body { background: #060807; background-image: radial-gradient(ellipse at 50% 0, #19211655, transparent 65%); color: #dfe5d6; }
-:is([data-theme="dark"],[data-theme="rasta"],[data-theme="vintage"],[data-theme="neon"],[data-theme="studio"]) .rack { background: repeating-linear-gradient(0deg, #ffffff03 0 1px, transparent 1px 3px), linear-gradient(120deg, #242a20, #151912 55%, #1d2219); border-color: #384132; box-shadow: 0 16px 40px #000d, inset 0 1px #ffffff18; }
-:is([data-theme="dark"],[data-theme="rasta"],[data-theme="vintage"],[data-theme="neon"],[data-theme="studio"]) .module { background: #070a0699; border-color: #39423499; }
-:is([data-theme="dark"],[data-theme="rasta"],[data-theme="vintage"],[data-theme="neon"],[data-theme="studio"]) .band-col { background: #050704b0; border-color: #232a20; }
-:is([data-theme="dark"],[data-theme="rasta"],[data-theme="vintage"],[data-theme="neon"],[data-theme="studio"]) .btn:not(.primary):not(.active) { background: linear-gradient(#2b3227, #151912); border-color: #070906; }
-:is([data-theme="dark"],[data-theme="rasta"],[data-theme="vintage"],[data-theme="neon"],[data-theme="studio"]) .select { background: #0d110b; border-color: #46503f; }
-:is([data-theme="dark"],[data-theme="rasta"],[data-theme="vintage"],[data-theme="neon"],[data-theme="studio"]) .badge { border-color: #ffffff2e; }
-:is([data-theme="dark"],[data-theme="rasta"],[data-theme="vintage"],[data-theme="neon"],[data-theme="studio"]) .kill-btn { background: #0a0d08; border-color: #1f251b; }
-:is([data-theme="dark"],[data-theme="rasta"],[data-theme="vintage"],[data-theme="neon"],[data-theme="studio"]) .display { background: #08100a; border-color: #1b2118; }
-:is([data-theme="dark"],[data-theme="rasta"],[data-theme="vintage"],[data-theme="neon"],[data-theme="studio"]) .upload { background: #05070455; border-color: #8fa07e55; }
-:is([data-theme="dark"],[data-theme="rasta"],[data-theme="vintage"],[data-theme="neon"],[data-theme="studio"]) .footer { color: #6c7764; }
-:is([data-theme="dark"],[data-theme="rasta"],[data-theme="vintage"],[data-theme="neon"],[data-theme="studio"]) .led { background: #6fd04f; box-shadow: 0 0 10px #6fd04f88; }
+:is([data-theme="dark"],[data-theme="rasta"],[data-theme="vintage"],[data-theme="neon"],[data-theme="studio"],[data-theme="camo"]) body { background: #060807; background-image: radial-gradient(ellipse at 50% 0, #19211655, transparent 65%); color: #dfe5d6; }
+:is([data-theme="dark"],[data-theme="rasta"],[data-theme="vintage"],[data-theme="neon"],[data-theme="studio"],[data-theme="camo"]) .rack { background: repeating-linear-gradient(0deg, #ffffff03 0 1px, transparent 1px 3px), linear-gradient(120deg, #242a20, #151912 55%, #1d2219); border-color: #384132; box-shadow: 0 16px 40px #000d, inset 0 1px #ffffff18; }
+:is([data-theme="dark"],[data-theme="rasta"],[data-theme="vintage"],[data-theme="neon"],[data-theme="studio"],[data-theme="camo"]) .module { background: #070a0699; border-color: #39423499; }
+:is([data-theme="dark"],[data-theme="rasta"],[data-theme="vintage"],[data-theme="neon"],[data-theme="studio"],[data-theme="camo"]) .band-col { background: #050704b0; border-color: #232a20; }
+:is([data-theme="dark"],[data-theme="rasta"],[data-theme="vintage"],[data-theme="neon"],[data-theme="studio"],[data-theme="camo"]) .btn:not(.primary):not(.active) { background: linear-gradient(#2b3227, #151912); border-color: #070906; }
+:is([data-theme="dark"],[data-theme="rasta"],[data-theme="vintage"],[data-theme="neon"],[data-theme="studio"],[data-theme="camo"]) .select { background: #0d110b; border-color: #46503f; }
+:is([data-theme="dark"],[data-theme="rasta"],[data-theme="vintage"],[data-theme="neon"],[data-theme="studio"],[data-theme="camo"]) .badge { border-color: #ffffff2e; }
+:is([data-theme="dark"],[data-theme="rasta"],[data-theme="vintage"],[data-theme="neon"],[data-theme="studio"],[data-theme="camo"]) .kill-btn { background: #0a0d08; border-color: #1f251b; }
+:is([data-theme="dark"],[data-theme="rasta"],[data-theme="vintage"],[data-theme="neon"],[data-theme="studio"],[data-theme="camo"]) .display { background: #08100a; border-color: #1b2118; }
+:is([data-theme="dark"],[data-theme="rasta"],[data-theme="vintage"],[data-theme="neon"],[data-theme="studio"],[data-theme="camo"]) .upload { background: #05070455; border-color: #8fa07e55; }
+:is([data-theme="dark"],[data-theme="rasta"],[data-theme="vintage"],[data-theme="neon"],[data-theme="studio"],[data-theme="camo"]) .footer { color: #6c7764; }
+:is([data-theme="dark"],[data-theme="rasta"],[data-theme="vintage"],[data-theme="neon"],[data-theme="studio"],[data-theme="camo"]) .led { background: #6fd04f; box-shadow: 0 0 10px #6fd04f88; }
 .help { position: fixed; inset: 0; display: none; place-items: center; background: #000b; z-index: 50; padding: 12px; }
 .help.on { display: grid; }
 .help > div { background: #1b2018; border: 1px solid #6e7a62; border-radius: 6px; padding: 22px 26px; max-width: 700px; max-height: 88vh; overflow: auto; line-height: 1.9; font-size: 11px; }
@@ -327,6 +327,15 @@ header > div:first-child { min-width: 0; }
     .brand { font-size: clamp(17px, 5.6vw, 26px) !important; letter-spacing: 2px !important; }
     .eyebrow { letter-spacing: 1.5px !important; font-size: 9px; }
 }
+[data-theme="camo"] { --green: #8cae57; --amber: #d9b25c; --red: #c4503f; --ring: #c9d37a; }
+[data-theme="camo"] body { background: #2a2d1c url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22900%22%20height%3D%22900%22%3E%3Cfilter%20id%3D%22f%22%20x%3D%220%22%20y%3D%220%22%20width%3D%22100%25%22%20height%3D%22100%25%22%3E%3CfeTurbulence%20type%3D%22fractalNoise%22%20baseFrequency%3D%22.011%22%20numOctaves%3D%222%22%20seed%3D%2211%22%20stitchTiles%3D%22stitch%22%2F%3E%3CfeColorMatrix%20values%3D%221%200%200%200%200%20%201%200%200%200%200%20%201%200%200%200%200%20%200%200%200%200%201%22%2F%3E%3CfeComponentTransfer%3E%3CfeFuncR%20type%3D%22discrete%22%20tableValues%3D%220.118%200.251%200.306%200.463%22%2F%3E%3CfeFuncG%20type%3D%22discrete%22%20tableValues%3D%220.125%200.204%200.329%200.447%22%2F%3E%3CfeFuncB%20type%3D%22discrete%22%20tableValues%3D%220.086%200.133%200.157%200.275%22%2F%3E%3C%2FfeComponentTransfer%3E%3C%2Ffilter%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20filter%3D%22url%28%23f%29%22%2F%3E%3C%2Fsvg%3E") 0 0 / 900px 900px; color: #e6e9d2; }
+[data-theme="camo"] body::before { content: ''; position: fixed; inset: 0; background: #0000005c; pointer-events: none; z-index: 0; }
+[data-theme="camo"] main { position: relative; z-index: 1; }
+[data-theme="camo"] .rack { background: linear-gradient(#00000055, #0000007c), #3a3f25 url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22560%22%20height%3D%22560%22%3E%3Cfilter%20id%3D%22f%22%20x%3D%220%22%20y%3D%220%22%20width%3D%22100%25%22%20height%3D%22100%25%22%3E%3CfeTurbulence%20type%3D%22fractalNoise%22%20baseFrequency%3D%22.016%22%20numOctaves%3D%222%22%20seed%3D%2211%22%20stitchTiles%3D%22stitch%22%2F%3E%3CfeColorMatrix%20values%3D%221%200%200%200%200%20%201%200%200%200%200%20%201%200%200%200%200%20%200%200%200%200%201%22%2F%3E%3CfeComponentTransfer%3E%3CfeFuncR%20type%3D%22discrete%22%20tableValues%3D%220.118%200.251%200.306%200.463%22%2F%3E%3CfeFuncG%20type%3D%22discrete%22%20tableValues%3D%220.125%200.204%200.329%200.447%22%2F%3E%3CfeFuncB%20type%3D%22discrete%22%20tableValues%3D%220.086%200.133%200.157%200.275%22%2F%3E%3C%2FfeComponentTransfer%3E%3C%2Ffilter%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20filter%3D%22url%28%23f%29%22%2F%3E%3C%2Fsvg%3E") 0 0 / 560px 560px; border-color: #1c2013; box-shadow: 0 16px 40px #000c, inset 0 1px #ffffff1c, inset 0 0 0 2px #0000003a; }
+[data-theme="camo"] .module { background: #11140bb5; border-color: #5a6338aa; }
+[data-theme="camo"] .band-col { background: #0b0e07c4; border-color: #3a4325; }
+[data-theme="camo"] .module-title, [data-theme="camo"] .title { text-shadow: 0 1px 0 #000a, 0 0 8px #000a; }
+[data-theme="camo"] .select { background: #151a0d; border-color: #5a6338; }
 a.btn { color: inherit; text-decoration: none; }
 .pads { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
 .pad { padding: 16px 2px; font-size: 9px; min-height: 52px; }
@@ -360,7 +369,7 @@ a.btn { color: inherit; text-decoration: none; }
             <div class="brand">DUB TRANSMUTER<span> – </span>VIRTUAL SOUND SYSTEM</div>
             <div class="eyebrow">DIGITAL DUB PREAMP PRO · LOCAL AUDIO LAB</div></div></div>
         </div>
-        <div class="hbtns"><select id="lang" class="select" aria-label="Idioma / Language"><option value="es">ES</option><option value="en">EN</option></select><button class="btn power" id="power">⏻ POWER</button><button class="btn" id="helpBtn">? ATAJOS</button><button class="btn" id="installBtn">⬇ INSTALAR</button><button class="btn" id="perfBtn">⛶ PERFORMANCE</button><select id="theme" class="select" aria-label="Tema"><option value="light">CLARO</option><option value="dark">OSCURO</option><option value="rasta">RASTA</option><option value="vintage">VINTAGE</option><option value="neon">NEÓN</option><option value="studio">ESTUDIO</option></select><input type="color" id="accent" value="#e8bd61" title="Color de acento (doble clic: restablecer)" aria-label="Color de acento"><div class="status"><i class="led"></i><span id="engineStatus">MOTOR DE AUDIO EN ESPERA</span></div></div>
+        <div class="hbtns"><select id="lang" class="select" aria-label="Idioma / Language"><option value="es">ES</option><option value="en">EN</option></select><button class="btn power" id="power">⏻ POWER</button><button class="btn" id="helpBtn">? ATAJOS</button><button class="btn" id="installBtn">⬇ INSTALAR</button><button class="btn" id="perfBtn">⛶ PERFORMANCE</button><select id="theme" class="select" aria-label="Tema"><option value="light">CLARO</option><option value="dark">OSCURO</option><option value="rasta">RASTA</option><option value="vintage">VINTAGE</option><option value="neon">NEÓN</option><option value="studio">ESTUDIO</option><option value="camo">CAMUFLAJE</option></select><input type="color" id="accent" value="#e8bd61" title="Color de acento (doble clic: restablecer)" aria-label="Color de acento"><div class="status"><i class="led"></i><span id="engineStatus">MOTOR DE AUDIO EN ESPERA</span></div></div>
     </header>
 
     <!-- RACK 1: TAPE DECK -->
@@ -1565,7 +1574,7 @@ document.addEventListener('keydown', e => {
 
 
 // ===== Tema, ayuda y atajos extra =====
-const THEMES = ['light', 'dark', 'rasta', 'vintage', 'neon', 'studio'];
+const THEMES = ['light', 'dark', 'rasta', 'vintage', 'neon', 'studio', 'camo'];
 function applyTheme(t) {
     if (!THEMES.includes(t)) t = 'light';
     document.documentElement.dataset.theme = t; $('theme').value = t;
@@ -1919,7 +1928,7 @@ window.addEventListener('beforeunload', () => { urls.forEach(u => URL.revokeObje
 
 // ===== Idioma / Language (ES · EN) =====
 const PAIRS = [
-['MOTOR DE AUDIO EN ESPERA','AUDIO ENGINE STANDBY'],['MOTOR DE AUDIO ACTIVO','AUDIO ENGINE ACTIVE'],['MOTOR DE AUDIO EN PAUSA','AUDIO ENGINE PAUSED'],['? ATAJOS','? SHORTCUTS'],['⬇ INSTALAR','⬇ INSTALL'],['CLARO','LIGHT'],['OSCURO','DARK'],['NEÓN','NEON'],['ESTUDIO','STUDIO'],
+['MOTOR DE AUDIO EN ESPERA','AUDIO ENGINE STANDBY'],['MOTOR DE AUDIO ACTIVO','AUDIO ENGINE ACTIVE'],['MOTOR DE AUDIO EN PAUSA','AUDIO ENGINE PAUSED'],['? ATAJOS','? SHORTCUTS'],['⬇ INSTALAR','⬇ INSTALL'],['CLARO','LIGHT'],['OSCURO','DARK'],['NEÓN','NEON'],['CAMUFLAJE','CAMO'],['ESTUDIO','STUDIO'],
 ['TU SELECCIÓN. TU SONIDO.','YOUR SELECTION. YOUR SOUND.'],['ARCHIVOS LOCALES / SIN SUBIDAS','LOCAL FILES / NO UPLOADS'],['El sistema espera tu música.','The system is waiting for your music.'],['Carga un archivo y enciende la sesión.','Load a file and start the session.'],
 ['+ Añade tus discos','+ Add your records'],['Arrastra archivos de audio aquí','Drag audio files here'],['EXPLORAR ARCHIVOS','BROWSE FILES'],['Empieza con el volumen bajo, especialmente con auriculares.','Start with the volume low, especially with headphones.'],
 ['USAR BPM','USE BPM'],['RESTABLECER','RESET'],['GANANCIA · SATURACIÓN · MIC','GAIN · SATURATION · MIC'],['MIC PASA POR EL ISOLATOR Y FX','MIC GOES THROUGH THE ISOLATOR AND FX'],['USA AUDÍFONOS (ACOPLE)','USE HEADPHONES (FEEDBACK)'],
